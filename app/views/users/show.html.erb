@@ -1,0 +1,61 @@
+<h1>Users#show</h1>
+<p>Find me in app/views/users/show.html.erb</p>
+<% if  current_user.present? %>
+<%= current_user.email %>
+<%= link_to "Logout", destroy_user_session_path, :method => :delete %>
+<% end %>
+
+"00:01:07,400-234-090
+ 00:05:01,701-080-080
+ 00:05:00,400-234-090"\
+
+
+
+ def solution(s)
+  if s.present?
+  s.gsub("\n", " ") #remove new line and add whitespace
+  call_logs = {}
+  array_of_call_logs = s.split(" ")
+  array_of_call_logs.each do |log|
+  call_record = log.split(",")
+  call_duration = call_record.first
+  cell_number = call_record.second
+  call_logs[cell_number] = [] << call_duration
+  total_call_duration = 0
+  call_logs.keys.each do |uniq_cell_record|
+  call_logs[:uniq_cell_record].each do |duration|
+   in_time =  duration.split(":").map(&:to_i)
+   total_duration = { hour: in_time.first, minute: in_time.second, minute: in_time.third }
+   if total_duration[:minute] < 5 && total_duration[:hour] == 0
+      total_time = convert_minute_into_second(total_duration[:minute]) + total_duration[:second]
+      charges = get_second_pulse_charges(total_time)
+      elsif total_duration[:minute] >= 5
+        unless total_duration[:second] == 0
+        total_time = convert_hour_into_minute + (total_duration[:minute] + 1)
+        end
+        charges = get_minute_pulse_charges(total_time)
+      end 
+      end 
+ end
+ end
+
+ 
+
+
+ private
+
+ def convert_minute_into_second(minute)
+  minute * 60
+ end
+
+ def convert_hour_into_minute(hour)
+  hour * 60
+ end
+
+ def get_second_pulse_charges(total_time)
+  total_time * 3
+ end
+
+ def get_minute_pulse_charges(total_time)
+  total_time * 150
+ end
